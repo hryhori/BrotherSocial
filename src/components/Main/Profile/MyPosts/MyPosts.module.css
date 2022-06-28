@@ -1,0 +1,57 @@
+.post_wrapper{
+    margin-left: 5px;
+
+}
+
+.post_block{
+    margin: 5px 0px 20px 0px ;
+}
+
+.post_block textarea{
+    margin: 10px 0px;
+    border: 0;
+    border-bottom: 1px solid black;
+    border-radius: 1%;
+    outline: none;
+}
+
+.add_post_button{
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.add_post_button:hover{
+    background-color: rgb(219, 255, 243);
+    transition: all 0.3s ease;
+}
+
+.add_post_button:focus{
+    background-color: rgb(219, 255, 243);
+}
+
+.delete_button{
+    margin: 0px 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.delete_button:hover{
+    background-color: rgb(255, 178, 178);
+    transition: all 0.3s ease;    
+}
+
+.delete_button:focus{
+    background-color: rgb(255, 178, 178);  
+}
+
+.posts{
+    padding: 5px;
+    border-top: 1px solid rgba(0,0,0, 0.3);
+    border-bottom: 1px solid rgba(0,0,0, 0.3);
+}

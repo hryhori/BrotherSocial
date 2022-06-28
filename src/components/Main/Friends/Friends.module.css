@@ -1,0 +1,44 @@
+.friends_wrapper{
+    height: 100%;
+    width: 85vw;
+    margin: 0px auto;
+}
+
+.wrapper_grid{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+}
+
+.friend_block{
+    margin:  20px auto auto auto;
+    width: 80px;
+    height: 100px;
+}
+
+.friend_ava{
+    margin: auto;
+    width: 50px;
+    height: 50px;
+}
+
+.ava{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color:  orange;
+    border-radius: 50%;
+}
+
+.friend_name{
+    text-align: center;
+    margin-top: 10%;
+}
+
+@media (max-width: 400px) {
+    .wrapper_grid{
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+    }
+}

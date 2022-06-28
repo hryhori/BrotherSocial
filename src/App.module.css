@@ -1,0 +1,8 @@
+.app_wrapper{
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    grid-template-columns: auto;
+    grid-template-rows: 100px 10fr 1fr;
+}
+

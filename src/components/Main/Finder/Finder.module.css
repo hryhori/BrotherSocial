@@ -1,0 +1,185 @@
+.finder_wrapper{
+    display: grid;
+    grid-template-rows: 50px auto 50px;
+    width: 100%;
+    max-width: 80vw;
+    margin: 20px auto;
+}
+
+.search_block{
+    display: grid;
+    grid-template-columns: auto 25px;
+}
+
+.search_block i{
+    margin: auto;
+}
+
+.ava{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color:  orange;
+    border-radius: 50%;
+}
+
+.user_block{
+    border: 1px solid rgba(0,0,0, 0.3);
+    border-radius: 20px;
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 100px 3fr 3fr 1fr;
+    grid-template-rows: auto auto;
+}
+
+.user_ava{
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user_name{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 20px;
+    font-weight: 800;
+    margin: auto 5px;
+}
+
+.user_status{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin: auto 5px;
+    color:rgba(0,0,0, 0.3);
+}
+
+.user_location{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin: auto 5px;
+}
+
+.user_location i{
+    position: relative;
+    bottom: -5px;
+}
+
+.user_button{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin: auto;
+}
+
+.user_button .followed{
+    background-color: rgba(255, 51, 51, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0, 0.3);
+    padding: 10px;
+    transition: all 0.5s ease;
+}
+
+.user_button .followed:hover{
+    background-color: rgba(255, 51, 51, 0.6);
+    transition: all 0.5s ease;
+}
+
+.user_button .unfollowed{
+    background-color: rgba(51, 255, 58, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0, 0.3);
+    padding: 10px;
+    transition: all 0.5s ease;
+}
+
+.user_button .unfollowed:hover{
+    background-color: rgba(0, 211, 7, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0, 0.3);
+    padding: 10px;
+    transition: all 0.5s ease;
+}
+
+.users{
+    margin-bottom: 0;
+}
+
+.page_counter_block{
+    margin: 10px auto;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0, 0.3);
+    padding: 10px;
+    height: 45px;
+}
+
+.counter{
+    margin: 0px 5px;
+    cursor: pointer;
+}
+
+.active_page{
+    font-weight: 800;
+    color:rgb(255, 176, 73);
+}
+
+/* MEDIA */
+
+@media (max-width: 600px) {
+    .user_block{
+        grid-template-columns: auto auto;
+        grid-template-rows: 100px auto 50px;
+    }
+
+.user_ava{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.user_name{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: center;
+}
+
+.user_status{
+    padding: 10px;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.user_location{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin: auto;
+}
+
+.user_button{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+.user_button button{
+    width: 200px;
+}
+}
