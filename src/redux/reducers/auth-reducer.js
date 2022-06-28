@@ -1,3 +1,5 @@
+import { authentication, getProfile } from '../../API/api';
+
 const SET_DATA = "SET-DATA";
 const SET_USER_INFO = "SET-USER-INFO";
 
@@ -32,5 +34,18 @@ let AuthReducer = (state = initialState, action) => {
 
 export const setData = (data) => ({type: SET_DATA, data: {...data}});
 export const setUserInfo = (info) => ({type: SET_USER_INFO, info});
+
+export const authThunk = () =>{
+    return (dispatch) =>{
+      authentication()
+          .then((response) => {
+              if(response.data.resultCode === 0){
+                  let data = response.data.data;
+                  dispatch(setData(data));
+                getProfile(data.id).then((second_response)=> {dispatch(setUserInfo(second_response.data))})
+              }
+          })
+    }
+  }
 
 export default AuthReducer

@@ -1,19 +1,11 @@
 import Nav from "./Nav";
 import React from "react";
 import { connect } from 'react-redux';
-import { setData, setUserInfo } from '../../redux/reducers/auth-reducer';
-import { getProfile, authentication } from "../../API/api";
+import { authThunk } from '../../redux/reducers/auth-reducer';
 
 class NavContainer extends React.Component{
     componentDidMount(){
-        authentication()
-        .then((response) => {
-            if(response.data.resultCode === 0){
-                let data = response.data.data;
-                this.props.setData(data)
-                    getProfile(data.id).then((second_response)=> {this.props.setUserInfo(second_response.data)})
-            }
-        })
+        this.props.authThunk()
     }
 
     render(){
@@ -28,4 +20,4 @@ let mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps, {setData, setUserInfo})(NavContainer);
+export default connect(mapStateToProps, {authThunk})(NavContainer);

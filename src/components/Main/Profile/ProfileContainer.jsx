@@ -1,17 +1,15 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from 'react-redux';
-import { setProfile } from '../../../redux/reducers/profile-reducer';
+import { getProfileThunk } from '../../../redux/reducers/profile-reducer';
 import {useParams} from 'react-router-dom'
-import { getProfile } from "../../../API/api";
 
 class ProfileContainer extends React.Component {
     componentDidMount(){
-        if(!this.props.profile){
-            getProfile(2).then((response)=>{
-            this.props.setProfile(response.data)
-        })
-    }}
+        if(!this.props.profile) {
+            this.props.getProfileThunk(2)
+        };
+    }
     render () {
         return <Profile {...this.props.profile} social={this.props.social}/>
     }
@@ -29,14 +27,11 @@ let UrlProfileContainer = (props) =>{
         params.userId = 2;
     }
     if(props.profile){
-        if(params.userId!==props.profile.userId){
-            getProfile(params.userId)
-            .then((response)=>{
-                props.setProfile(response.data)
-            })
-        }
+        if(params.userId!=props.profile.userId) {
+            props.getProfileThunk(params.userId)
+        };
     }
     return <ProfileContainer {...props}/> ;
 } 
 
-export default connect(mapStateToProps, {setProfile}) (UrlProfileContainer)
+export default connect(mapStateToProps, {getProfileThunk}) (UrlProfileContainer)
