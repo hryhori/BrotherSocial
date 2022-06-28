@@ -4,7 +4,7 @@ import preloder from '../../../images/loading.gif'
 let Preloader = (props) =>{
     return (
         <div className={s.preloader_wrapper}>
-            <img src={preloder} /> 
+            <img src={preloder} alt="Loading..."/> 
         </div>
     )
 }

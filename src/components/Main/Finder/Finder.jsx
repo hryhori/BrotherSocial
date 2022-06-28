@@ -1,7 +1,6 @@
 import s from "./Finder.module.css";
 import Preloader from '../../common/Preloader/Preloader';
 import { NavLink } from 'react-router-dom';
-import { followUser } from '../../../API/api';
 
 const Finder = (props) => {
     return (
@@ -15,7 +14,7 @@ const Finder = (props) => {
             <div className={s.user_block} key={user.id}>
               <NavLink className={s.user_ava} to={`/Profile/${user.id}`}>
                 {user.photos.small ? (
-                  <img src={user.photos.small} style={{ padding: 10 + "px" }} />
+                  <img src={user.photos.small} style={{ padding: 10 + "px" }} alt=" "/>
                 ) : (
                   <span className={s.ava}></span>
                 )}
@@ -33,7 +32,7 @@ const Finder = (props) => {
               </div>
               <div className={s.user_button}>
                 <button
-                disabled ={props.isFollowingInProgress.userId==user.id && props.isFollowingInProgress.inProgress ? true : false}
+                disabled ={props.isFollowingInProgress.userId===user.id && props.isFollowingInProgress.inProgress ? true : false}
                   className={user.followed ? s.followed : s.unfollowed}
                   onClick={() => {props.follow(user.followed, user.id)}}>
                   {user.followed ? "Unfollow" : "Follow"}

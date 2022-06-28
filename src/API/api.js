@@ -30,5 +30,14 @@ export const followUser = (followed, userId) =>{
             .post(`follow/${userId}`)
                 .then((resp) => resp.data)
         );
-    
+}
+
+export const getProfile = (userId) =>{
+    return instance
+        .get('profile/' + userId)
+}
+
+export const authentication = () =>{
+    return instance
+        .get('auth/me')
 }
