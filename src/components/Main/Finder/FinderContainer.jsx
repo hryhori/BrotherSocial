@@ -10,7 +10,7 @@ class FinderContainer extends React.Component {
     }
   
     onPageChanged = (pageSize) => {
-      this.props.expandPageThunk(this.props.pageSize);
+      this.props.expandPageThunk(pageSize);
     }
   
     render() {

@@ -16,7 +16,7 @@ export const getUsers = (currentPage = 1, pageSize = 5) => {
 
 export const expandPage = (pageSize = 5) =>{
     return instance
-        .get(`users?count=${pageSize+5}`)
+        .get(`users?count=${pageSize}`)
         .then((resp)=>(resp.data))
 }
 

@@ -27,7 +27,7 @@ let UrlProfileContainer = (props) =>{
         params.userId = 2;
     }
     if(props.profile){
-        if(params.userId!=props.profile.userId) {
+        if(params.userId!==props.profile.userId) {
             props.getProfileThunk(params.userId)
         };
     }

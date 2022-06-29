@@ -6,6 +6,7 @@ import NavContainer from './components/Nav/NavContainer';
 import FriendsContainer from './components/Main/Friends/FriendsContainer';
 import FinderContainer from "./components/Main/Finder/FinderContainer"
 import UrlProfileContainer from './components/Main/Profile/ProfileContainer';
+import Login from "./components/Main/LoginPage/Login"
 
 function App(props) {
   return (
@@ -26,6 +27,7 @@ function App(props) {
           />
           <Route path="/Friends" element={<FriendsContainer />} />
           <Route path="/Finder" element={<FinderContainer/>}/>
+          <Route path="/login" element={<Login/>}/>
         </Routes>
         <Footer />
       </div>
