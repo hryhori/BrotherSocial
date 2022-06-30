@@ -1,28 +1,27 @@
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
-import Preloader from "../../../common/Preloader/Preloader";
+import ProfileDetails from './ProfileDetails.jsx/ProfileDetails';
 
 const MyPosts = (props) => {
-
+  
   let AddPostText = React.createRef();
 
   let Add_Post = () =>{
-    props.AddPost();
+    props.AddPostActionCreator();
   }
 
   let UpdatePostText = () =>{
     let text = AddPostText.current.value;
-    props.onTextEnter(text);
+    props.OnTextEnterActionCreator(text);
   }
 
   let postsElements = props.posts.map((post) => (
     <Post key={post.id} message={post.text} likes={post.likescount} />
   ));
-
   return (
     <div className={s.post_wrapper}>
-      <h3>{props.profile ? props.profile.fullName : <Preloader/>}</h3>
+      <ProfileDetails profile={props.profile}/>
       <div>
         Добавить запись:
         <div className={s.post_block}>
