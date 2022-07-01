@@ -6,9 +6,15 @@ import {useParams} from 'react-router-dom'
 
 class ProfileContainer extends React.Component {
     componentDidMount(){
-        if(!this.props.profile) {
-            this.props.getProfileThunk(2)
-        };
+        this.props.getProfileThunk(this.props.userId)
+    }
+    componentDidUpdate(update){
+        let previous = update.profile;
+        if(previous){
+            if(this.props.userId!==previous.userId) {
+                this.props.getProfileThunk(this.props.userId)
+            };
+        }
     }
     render () {
         return <Profile {...this.props.profile} social={this.props.social}/>
@@ -23,15 +29,12 @@ let mapStateToProps = (state) => ({
 
 let UrlProfileContainer = (props) =>{
     let params = useParams();
-    if(!params.userId){
-        params.userId = 2;
+    let userId = params.userId;
+    if(!userId)
+    {
+        userId = 2;
     }
-    if(props.profile){
-        if(params.userId!==props.profile.userId) {
-            props.getProfileThunk(params.userId)
-        };
-    }
-    return <ProfileContainer {...props}/> ;
+    return <ProfileContainer {...props} userId={userId}/> ;
 } 
 
 export default connect(mapStateToProps, {getProfileThunk}) (UrlProfileContainer)
