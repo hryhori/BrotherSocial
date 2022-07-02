@@ -6,12 +6,16 @@ class ProfileDetails extends React.Component{
 
     state = {
         statusEditMode: false,
+        status: this.props.status,
       }
 
-    toggleEditMode(){
+    toggleEditMode = () =>{
         this.setState({
             statusEditMode: !this.state.statusEditMode
         })
+        if(this.state.statusEditMode){
+          this.props.updateStatusThunk(this.state.status);
+        }
     }
 
     render(){
@@ -20,12 +24,12 @@ class ProfileDetails extends React.Component{
             <h3>{this.props.profile.fullName}</h3>
             <div className={s.user_status}>
               {!this.state.statusEditMode && (
-                <span onDoubleClick={this.toggleEditMode.bind(this)}>
-                  Status: {this.props.profile.aboutMe}
+                <span onDoubleClick={this.toggleEditMode}>
+                  Status: {this.props.status || '-------'}
                 </span>
               )}
               {this.state.statusEditMode && (
-                <input autoFocus={true} value={this.props.profile.aboutMe} onBlur={this.toggleEditMode.bind(this)}/>
+                <input onChange={(e)=>{this.setState({status: e.currentTarget.value})}} autoFocus={true} value={this.state.status} onBlur={this.toggleEditMode}/>
               )}
             </div>
           </>

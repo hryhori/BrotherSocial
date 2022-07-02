@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from 'react-redux';
-import { getProfileThunk } from '../../../redux/reducers/profile-reducer';
+import { getProfileThunk, getStatusThunk } from '../../../redux/reducers/profile-reducer';
 import {useParams} from 'react-router-dom'
 
 class ProfileContainer extends React.Component {
@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     componentDidUpdate(update){
         let previous = update.profile;
         if(previous){
-            if(this.props.userId!==previous.userId) {
+            if(this.props.userId!=previous.userId) {
                 this.props.getProfileThunk(this.props.userId)
             };
         }
@@ -37,4 +37,4 @@ let UrlProfileContainer = (props) =>{
     return <ProfileContainer {...props} userId={userId}/> ;
 } 
 
-export default connect(mapStateToProps, {getProfileThunk}) (UrlProfileContainer)
+export default connect(mapStateToProps, {getProfileThunk, getStatusThunk}) (UrlProfileContainer)

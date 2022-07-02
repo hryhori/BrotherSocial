@@ -15,13 +15,13 @@ const MyPosts = (props) => {
     let text = AddPostText.current.value;
     props.OnTextEnterActionCreator(text);
   }
-
+  
   let postsElements = props.posts.map((post) => (
     <Post key={post.id} message={post.text} likes={post.likescount} />
   ));
   return (
     <div className={s.post_wrapper}>
-      <ProfileDetails profile={props.profile}/>
+      <ProfileDetails profile={props.profile} status={props.status} updateStatusThunk={props.updateStatusThunk}/>
       <div>
         Добавить запись:
         <div className={s.post_block}>

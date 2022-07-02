@@ -1,4 +1,4 @@
-import { authentication, getProfile } from '../../API/api';
+import { authAPI, profileAPI } from '../../API/api';
 
 const SET_DATA = "SET-DATA";
 const SET_USER_INFO = "SET-USER-INFO";
@@ -37,12 +37,12 @@ export const setUserInfo = (info) => ({type: SET_USER_INFO, info});
 
 export const authThunk = () =>{
     return (dispatch) =>{
-      authentication()
+      authAPI.authentication()
           .then((response) => {
               if(response.data.resultCode === 0){
                   let data = response.data.data;
                   dispatch(setData(data));
-                getProfile(data.id).then((second_response)=> {dispatch(setUserInfo(second_response.data))})
+                profileAPI.getProfile(data.id).then((second_response)=> {dispatch(setUserInfo(second_response.data))})
               }
           })
     }

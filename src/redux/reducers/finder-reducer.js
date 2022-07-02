@@ -1,4 +1,4 @@
-import { getUsers, expandPage, followUser } from "../../API/api";
+import { usersAPI, followAPI } from "../../API/api";
 
 
 const FOLLOW_ACTION = "FOLLOW-ACTION";
@@ -60,7 +60,7 @@ export const setIsFollowingInProgress = (isFollowingInProgress) => ({type: TOGGL
 export const getUsersThunk = (pageSize) => {
     return (dispatch) => {
     dispatch(setIsFetching(true));
-      getUsers(null, pageSize).then((response) => {
+      usersAPI.getUsers(null, pageSize).then((response) => {
         dispatch(setIsFetching(false));
         dispatch(setUsers(response.items));
       });
@@ -70,7 +70,7 @@ export const expandPageThunk = (pageSize) => {
     return (dispatch) =>{
     dispatch(setIsFetching(true));
     dispatch(setPageSize(pageSize));
-  expandPage(pageSize).then((response) => {
+  usersAPI.expandPage(pageSize).then((response) => {
     dispatch(setUsers(response.items));
     dispatch(setIsFetching(false));
   });
@@ -79,7 +79,7 @@ export const expandPageThunk = (pageSize) => {
 export const followThunk = (follow_status, userId) =>{
    return (dispatch) => {
         dispatch(setIsFollowingInProgress({userId, inProgress: true}))
-        followUser(follow_status, userId)
+        followAPI.followUser(follow_status, userId)
             .then((resp) => {
                 if(resp.resultCode === 0){
                     dispatch(follow(userId));
