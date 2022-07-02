@@ -7,12 +7,13 @@ import {useParams} from 'react-router-dom'
 class ProfileContainer extends React.Component {
     componentDidMount(){
         this.props.getProfileThunk(this.props.userId)
+        this.props.getStatusThunk(this.props.userId)
     }
-    componentDidUpdate(update){
-        let previous = update.profile;
-        if(previous){
-            if(this.props.userId!=previous.userId) {
+    componentDidUpdate(prevProps){
+        if(prevProps.profile){
+            if(this.props.userId!=prevProps.profile.userId) {
                 this.props.getProfileThunk(this.props.userId)
+                this.props.getStatusThunk(this.props.userId)
             };
         }
     }
