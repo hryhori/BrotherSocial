@@ -9,20 +9,6 @@ let mapStateToProps = (state) => {
   }
 }
 
-let mapDispatchToProps = (dispatch) => {
-  return{
-    send_message: () =>{
-      let action = SendMessageActionCreator();
-      dispatch(action);
-    },
-
-    update_entered_text: (text) =>{
-      let action = UpdateMessageTextActionCreator(text);
-      dispatch(action);
-    },
-  }
-}
-
-const DialogsConteiner = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs));
+const DialogsConteiner = withAuthRedirect(connect(mapStateToProps, {SendMessageActionCreator})(Dialogs));
 
 export default DialogsConteiner;

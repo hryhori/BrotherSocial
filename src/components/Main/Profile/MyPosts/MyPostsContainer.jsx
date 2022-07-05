@@ -1,4 +1,4 @@
-import { OnTextEnterActionCreator, AddPostActionCreator, updateStatusThunk} from "../../../../redux/reducers/profile-reducer";
+import { AddPostActionCreator, updateStatusThunk} from "../../../../redux/reducers/profile-reducer";
 import MyPosts from "./MyPosts";
 import { connect } from 'react-redux';
 
@@ -12,6 +12,6 @@ const mapStateToProps = (state) =>{
 }
 
 
-const MyPostsConteiner = connect(mapStateToProps, {AddPostActionCreator, OnTextEnterActionCreator, updateStatusThunk})(MyPosts);
+const MyPostsConteiner = connect(mapStateToProps, {AddPostActionCreator, updateStatusThunk})(MyPosts);
 
 export default MyPostsConteiner;

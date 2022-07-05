@@ -6,6 +6,7 @@ import NavMenuReducer from './reducers/navmenu-reducer';
 import FinderReducer from "./reducers/finder-reducer";
 import AuthReducer from "./reducers/auth-reducer";
 import thunkMiddleware  from "redux-thunk"; 
+import {reducer as formReducer} from "redux-form"
 
 let reducers = combineReducers({
     ProfilePage: ProfileReducer,
@@ -14,6 +15,7 @@ let reducers = combineReducers({
     NavMenu: NavMenuReducer,
     FinderPage: FinderReducer,
     auth: AuthReducer,
+    form: formReducer,
 });
 
 let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));
