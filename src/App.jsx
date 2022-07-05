@@ -7,6 +7,7 @@ import FriendsContainer from './components/Main/Friends/FriendsContainer';
 import FinderContainer from "./components/Main/Finder/FinderContainer"
 import UrlProfileContainer from './components/Main/Profile/ProfileContainer';
 import Login from "./components/Main/LoginPage/Login"
+import SignUp from './components/Main/SignUpPage/SignUpPage';
 
 function App(props) {
   return (
@@ -28,6 +29,7 @@ function App(props) {
           <Route path="/Friends" element={<FriendsContainer />} />
           <Route path="/Finder" element={<FinderContainer/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<SignUp/>}/>         
         </Routes>
         <Footer />
       </div>

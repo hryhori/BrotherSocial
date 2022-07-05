@@ -44,31 +44,25 @@ h1{
   }
   
   .btn{
-    background:#2ecc71;
-    max-width:125px;
-    padding: 8px 16px;
-    color:white;
-    border-radius:4px;
-    border: #27ae60 1px solid;
-    font-weight:800;
-    font-size:0.8em;
-  }
-  
-  .btn:hover{
-    background:#2CC06B; 
-  }
-
-  .btn2{
     background:#3498db;
     max-width:125px;
-    padding: 6px 16px;
+    padding: 8px 16px;
     color:white;
     border-radius:4px;
     border: #2980b9 1px solid;
     font-weight:800;
     font-size:0.8em;
   }
+  
+  .btn:hover{
+    background:#3594D2; 
+  }
 
-  .btn2:hover{ 
-  background:#3594D2; 
+  .btn2{
+    color:#f1c40f;
+  }
+
+  .form_wrapper{
+    text-align: center;
+    margin: auto;
   }
