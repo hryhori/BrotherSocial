@@ -1,0 +1,32 @@
+.error textarea{
+    border-bottom: 1px solid red;
+}
+
+.error span{
+    color:red;
+    font-size: 12px;
+}
+
+.length{
+    display: block;
+    float: right;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.error_login span{
+    color: red;
+    position: relative;
+    left: 220px;
+    bottom: 35px;
+}
+
+.error_login input{
+    border-bottom: 1px solid red;
+}
+
+@media (max-width: 600px) {
+    .error_login span{
+        left: 0;
+        bottom: 0;
+    }
+}
