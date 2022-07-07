@@ -17,7 +17,7 @@ let AuthReducer = (state = initialState, action) => {
             return {
                 ...state,
                     ...action.data,
-                    isAuth: true,
+                    isAuth: action.isAuth,
             }
         }
         case SET_USER_INFO:{
@@ -32,7 +32,7 @@ let AuthReducer = (state = initialState, action) => {
     }
 }
 
-export const setData = (data) => ({type: SET_DATA, data: {...data}});
+export const setData = (data, isAuth) => ({type: SET_DATA, data: {...data}, isAuth});
 export const setUserInfo = (info) => ({type: SET_USER_INFO, info});
 
 export const authThunk = () =>{
@@ -41,11 +41,33 @@ export const authThunk = () =>{
           .then((response) => {
               if(response.data.resultCode === 0){
                   let data = response.data.data;
-                  dispatch(setData(data));
+                  dispatch(setData(data, true));
                 profileAPI.getProfile(data.id).then((second_response)=> {dispatch(setUserInfo(second_response.data))})
               }
           })
     }
   }
+
+export const LoginThunk = (email, password) =>{
+    return (dispatch) =>{
+        authAPI.login(email, password)
+            .then(resp => {
+                if(resp.data.resultCode === 0){
+                    dispatch(authThunk());
+                }
+            })
+    }
+}
+
+export const LogoutThunk = () =>{
+    return (dispatch) =>{
+        authAPI.logout()
+            .then(resp => {
+                if(resp.data.resultCode === 0){
+                    dispatch(setData(null, false));
+                }
+            })
+    }
+}
 
 export default AuthReducer

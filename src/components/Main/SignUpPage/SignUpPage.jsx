@@ -16,6 +16,7 @@ const SignUpForm = (props) =>{
             name="email"
             placeholder="Email"
             className={s.email}
+            disabled={true}
             validate={[required]}
           />
 
@@ -24,6 +25,7 @@ const SignUpForm = (props) =>{
             name="name"
             placeholder="Your Name"
             className={s.email}
+            disabled={true}
             validate={[required]}
           />
 
@@ -32,6 +34,7 @@ const SignUpForm = (props) =>{
             name="password"
             placeholder="Password"
             className={s.email}
+            disabled={true}
             validate={[required]}
           />
             <button className={s.btn}>Sign Up</button>

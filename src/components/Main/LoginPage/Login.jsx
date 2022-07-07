@@ -3,6 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { required } from '../../../validators/validators';
 import {Input} from "../../common/FormControl/FormControl"
+import { LoginThunk } from "../../../redux/reducers/auth-reducer";
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
+
 
 const LoginForm = (props) =>{
     return(
@@ -22,6 +26,7 @@ const LoginForm = (props) =>{
             component={Input}
             name="password"
             placeholder="Password"
+            type={'password'}
             className={s.email}
             validate={[required]}
           />
@@ -36,12 +41,23 @@ const LoginForm = (props) =>{
 
 const LoginReduxForm = reduxForm({form: 'LoginForm'})(LoginForm)
 
-const Login = () => {
+const Login = (props) => {
+
+  let onSubmit = (formData) =>{
+     props.LoginThunk(formData.email, formData.password)
+  }
+
+  if(props.isAuth){
+    return <Navigate to={"/profile/" + props.userId} />
+  }
+
     return (
       <div className={s.login_wrapper}>
-        <LoginReduxForm />
+        <LoginReduxForm onSubmit={onSubmit}/>
       </div>
     );
 }
 
-export default Login;
+const mapStateToProps = (state) =>({isAuth: state.auth.isAuth, userId: state.auth.data.userId})
+
+export default connect(mapStateToProps, {LoginThunk})(Login);

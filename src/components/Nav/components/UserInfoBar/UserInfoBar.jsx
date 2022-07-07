@@ -12,7 +12,7 @@ const UserInfoBar = (props) => {
                 <NavLink to={'/Profile/'+ props.userId}>{props.fullName}</NavLink>
             </div>
             <div className={s.logout}>
-                <span className={s.logout_btn}><BoxArrowRight size='2em'/></span>
+                <span onClick={props.LogoutThunk} className={s.logout_btn}><BoxArrowRight size='2em'/></span>
             </div>
         </div>
     );

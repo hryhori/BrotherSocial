@@ -25,7 +25,7 @@ function Nav(props) {
               ))
             }
           </ul>
-          {props.about_user.isAuth ? <UserInfoBar {...props.about_user.data}/> : <AuthButtons/>}
+          {props.about_user.isAuth ? <UserInfoBar {...props.about_user.data} LogoutThunk={props.LogoutThunk}/> : <AuthButtons/>}
         </div>
         <Burger active={menuActive} setActive={setMenuActive} items={props.info.links} logo={props.info.logo} />
       </div>
