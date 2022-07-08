@@ -1,4 +1,5 @@
 import { authAPI, profileAPI } from '../../API/api';
+import {stopSubmit} from "redux-form"
 
 const SET_DATA = "SET-DATA";
 const SET_USER_INFO = "SET-USER-INFO";
@@ -8,7 +9,6 @@ let initialState = {
     login: null,
     id: null,
     isAuth: false,
-    data: null,
 }
 
 let AuthReducer = (state = initialState, action) => {
@@ -55,6 +55,9 @@ export const LoginThunk = (email, password) =>{
                 if(resp.data.resultCode === 0){
                     dispatch(authThunk());
                 }
+                else{
+                    dispatch(stopSubmit("LoginForm", {_error: resp.data.messages[0]} ));
+                  }    
             })
     }
 }

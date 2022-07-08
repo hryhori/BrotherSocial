@@ -30,6 +30,7 @@ const LoginForm = (props) =>{
             className={s.email}
             validate={[required]}
           />
+          {props.error ? <span className={s.SummaryError}>*{props.error}</span> : null}
             <div className={s.buttons}>
             <NavLink to="/signup" className={s.btn2}>Sign Up</NavLink>
             <button className={s.btn}>Log In</button>
@@ -58,6 +59,6 @@ const Login = (props) => {
     );
 }
 
-const mapStateToProps = (state) =>({isAuth: state.auth.isAuth, userId: state.auth.data.userId})
+const mapStateToProps = (state) =>({isAuth: state.auth.isAuth, userId: state.auth.id})
 
 export default connect(mapStateToProps, {LoginThunk})(Login);
