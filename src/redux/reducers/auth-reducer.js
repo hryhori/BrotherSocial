@@ -3,12 +3,14 @@ import {stopSubmit} from "redux-form"
 
 const SET_DATA = "SET-DATA";
 const SET_USER_INFO = "SET-USER-INFO";
+const INITIALIZE_APP = "INITIALIZE-APP"
 
 let initialState = {
     email: null,
     login: null,
     id: null,
     isAuth: false,
+    initialized: false,
 }
 
 let AuthReducer = (state = initialState, action) => {
@@ -26,6 +28,12 @@ let AuthReducer = (state = initialState, action) => {
                     data: {...action.info} ,
            } 
         }
+        case INITIALIZE_APP:{
+            return{
+                ...state,
+                    initialized: true,
+            }
+        }
 
         default:
             return state;
@@ -34,6 +42,7 @@ let AuthReducer = (state = initialState, action) => {
 
 export const setData = (data, isAuth) => ({type: SET_DATA, data: {...data}, isAuth});
 export const setUserInfo = (info) => ({type: SET_USER_INFO, info});
+export const initializeSuccess = () => ({type: INITIALIZE_APP});
 
 export const authThunk = () =>{
     return (dispatch) =>{
@@ -69,6 +78,16 @@ export const LogoutThunk = () =>{
                 if(resp.data.resultCode === 0){
                     dispatch(setData(null, false));
                 }
+            })
+    }
+}
+
+export const Initialize = () =>{
+    return (dispatch)=>{
+        let promise = [dispatch(authThunk())];
+        Promise.all([promise])
+            .then(()=>{
+                dispatch(initializeSuccess());
             })
     }
 }

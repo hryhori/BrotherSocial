@@ -3,6 +3,8 @@ import Profile from "./Profile";
 import { connect } from 'react-redux';
 import { getProfileThunk, getStatusThunk } from '../../../redux/reducers/profile-reducer';
 import {useParams} from 'react-router-dom'
+import { Navigate } from "react-router-dom";
+import { getProfileSelector, getSocialLinksSelector, getMyIdSelector } from '../../../redux/reducers/selectors';
 
 class ProfileContainer extends React.Component {
     componentDidMount(){
@@ -23,9 +25,9 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({ 
-    profile: state.ProfilePage.profile,
-    social: state.ProfilePage.social,
-    myprofile: state.auth.id,
+    profile: getProfileSelector(state),
+    social: getSocialLinksSelector(state),
+    myprofile: getMyIdSelector(state),
 })
 
 
@@ -34,7 +36,7 @@ let UrlProfileContainer = (props) =>{
     let userId = params.userId;
     if(!userId)
     {
-        userId = props.myprofile;
+        return <Navigate to="/login"/>
     }
     return <ProfileContainer {...props} userId={userId}/> ;
 } 
