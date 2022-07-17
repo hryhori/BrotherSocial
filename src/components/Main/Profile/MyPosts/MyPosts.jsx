@@ -4,17 +4,22 @@ import React from "react";
 import ProfileDetails from './ProfileDetails.jsx/ProfileDetails';
 import AddPostForm  from './AddPostForm/AddPostForm.jsx';
 
-const MyPosts = (props) => {
-  
-  let postsElements = props.posts.map((post) => (
+class MyPosts extends React.Component{
+  shouldComponentUpdate(nextProps, nextState){
+    console.log(nextProps);
+    return nextProps!=this.props || nextState!=this.state;
+  }
+  render(){
+    console.log("render")
+    let postsElements = this.props.posts.map((post) => (
     <Post key={post.id} message={post.text} likes={post.likescount} />
   ));
   return (
     <div className={s.post_wrapper}>
-      <ProfileDetails profile={props.profile} status={props.status} updateStatusThunk={props.updateStatusThunk}/>
+      <ProfileDetails profile={this.props.profile} status={this.props.status} updateStatusThunk={this.props.updateStatusThunk}/>
       <div>
         Добавить запись:
-        <AddPostForm onSubmit={(values)=>{props.AddPostActionCreator(values.PostText)}}/>
+        <AddPostForm onSubmit={(values)=>{this.props.AddPostActionCreator(values.PostText)}}/>
       </div>
       <div>
         Мои записи:
@@ -22,6 +27,6 @@ const MyPosts = (props) => {
       </div>
     </div>
   );
-};
+}};
 
 export default MyPosts;
