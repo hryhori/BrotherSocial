@@ -10,13 +10,16 @@ const TOGGLE_FOLLOWING = "TOGGLE-FOLLOWING"
 
 const initialState = {
    users: [
-   ],
+   ] as Array<any>,
     totalUsersCount: 0,
     pageSize: 5,
     isFetching: false,
     isFollowingInProgress: {userId: null, inProgress: false},
+    currentPage: null,
 }
-const FinderReducer = (state = initialState, action) =>{
+type initialStateType = typeof initialState;
+
+const FinderReducer = (state = initialState, action: any):initialStateType =>{
     switch(action.type){
         case FOLLOW_ACTION:{
             return {
@@ -50,37 +53,39 @@ const FinderReducer = (state = initialState, action) =>{
     }
 } 
 
-export const follow = (userId) => ({type: FOLLOW_ACTION, user_id: userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
-export const setPage = (page) => ({type: SET_PAGE, pageId: page});
-export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, size: pageSize});
-export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const setIsFollowingInProgress = (isFollowingInProgress) => ({type: TOGGLE_FOLLOWING, isFollowingInProgress})
+type followActionType = {type: typeof FOLLOW_ACTION, user_id: number };
 
-export const getUsersThunk = (pageSize) => {
-    return (dispatch) => {
+export const follow = (userId:number):followActionType => ({type: FOLLOW_ACTION, user_id: userId});
+export const setUsers = (users:any) => ({type: SET_USERS, users});
+export const setPage = (page:any) => ({type: SET_PAGE, pageId: page});
+export const setPageSize = (pageSize:any) => ({type: SET_PAGE_SIZE, size: pageSize});
+export const setIsFetching = (isFetching:any) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const setIsFollowingInProgress = (isFollowingInProgress:any) => ({type: TOGGLE_FOLLOWING, isFollowingInProgress})
+
+export const getUsersThunk = (pageSize: any) => {
+    return (dispatch: any) => {
     dispatch(setIsFetching(true));
-      usersAPI.getUsers(null, pageSize).then((response) => {
+      usersAPI.getUsers(undefined, pageSize).then((response: any) => {
         dispatch(setIsFetching(false));
         dispatch(setUsers(response.items));
       });
 }}
 
-export const expandPageThunk = (pageSize) => {
-    return (dispatch) =>{
+export const expandPageThunk = (pageSize: any) => {
+    return (dispatch: any) =>{
     dispatch(setIsFetching(true));
     dispatch(setPageSize(pageSize));
-  usersAPI.expandPage(pageSize).then((response) => {
+  usersAPI.expandPage(pageSize).then((response: any) => {
     dispatch(setUsers(response.items));
     dispatch(setIsFetching(false));
   });
 }}
 
-export const followThunk = (follow_status, userId) =>{
-   return (dispatch) => {
+export const followThunk = (follow_status: any, userId: any) =>{
+   return (dispatch: any) => {
         dispatch(setIsFollowingInProgress({userId, inProgress: true}))
         followAPI.followUser(follow_status, userId)
-            .then((resp) => {
+            .then((resp:any) => {
                 if(resp.resultCode === 0){
                     dispatch(follow(userId));
                 }

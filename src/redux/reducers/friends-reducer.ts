@@ -1,3 +1,5 @@
+type initialStateType = typeof initialState
+
 let initialState ={
     friends: [
         { id: 1, name: "Alex", photo: "" },
@@ -8,7 +10,7 @@ let initialState ={
       ]
 }
 
-let FriendsReducer = (state = initialState, action) => {
+let FriendsReducer = (state: initialStateType = initialState, action: any) => {
     return state;
 }
 

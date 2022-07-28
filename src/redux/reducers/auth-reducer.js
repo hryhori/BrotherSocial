@@ -17,7 +17,7 @@ let initialState = {
     isFetching: null,
 }
 
-let AuthReducer = (state = initialState, action) => {
+let AuthReducer = (state= initialState, action ) => {
     switch(action.type){
         case SET_DATA:{
             return {
